@@ -1,10 +1,14 @@
 from nltk.corpus import names
+import nltk
 import random
+
+def gender_features(name):
+    return {'last_letter': name[-1]}
 
 names = ([(name, 'male') for name in names.words('male.txt')] +
          [(name, 'female') for name in names.words('female.txt')])
 
-print random.shuffle(names)
+random.shuffle(names)
 
 featuresets = [(gender_features(n), g) for (n, g) in names]
 train_set, test_set = featuresets[500:], featuresets[:500]
